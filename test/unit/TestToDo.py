@@ -113,7 +113,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         
         from src.todoList import put_item
 
-        self.assertRaises(Exception, put_item(self.text, "")
+        self.assertRaises(Exception, put_item(self.text, ""))
                    
         print ('End: test_get_table')    
     
