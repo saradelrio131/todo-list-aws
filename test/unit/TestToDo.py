@@ -233,12 +233,12 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('End: test_delete_todo_exception')
 
     def raise_and_catch_exception(do_raise):
-    # example function that raises and catches an exception
-    try:
-        if do_raise:
-            raise ValueError()
-    except ValueError:
-        print('Raised exception')
+        # example function that raises and catches an exception
+        try:
+            if do_raise:
+                raise ValueError()
+        except ValueError:
+            print('Raised exception')
 
 
 if __name__ == '__main__':
