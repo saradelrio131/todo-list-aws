@@ -6,7 +6,6 @@ from moto import mock_dynamodb2
 import sys
 import os
 import json
-from unittest import mock
 
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
@@ -30,7 +29,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.is_local = 'true'
         self.uuid = "123e4567-e89b-12d3-a456-426614174000"
         self.text = "Aprender DevOps y Cloud en la UNIR"
-        self.boolean = 'true'
 
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
@@ -106,16 +104,6 @@ class TestDatabaseFunctions(unittest.TestCase):
             self.text,
             responseGet['text'])
         print ('End: test_get_todo')
-        
-    def test_get_table(self):
-        print ('---------------------')
-        print ('Start: test_get_table')
-        
-        from src.todoList import put_item
-
-        self.assertRaises(Exception, put_item(self.text, ""))
-                   
-        print ('End: test_get_table')    
     
     def test_list_todo(self):
         print ('---------------------')
@@ -211,23 +199,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
-        
-    def raise_and_catch_exception(self):
-        # example function that raises and catches an exception
-        try:
-            if self.boolean:
-                raise ValueError()
-        except ValueError:
-            print('Raised exception')
-    
-    def test_delete_todo_exception(self):
-        print ('---------------------')
-        print ('Start: test_delete_todo_exception')
-        from src.todoList import delete_item
-        # Testing file functions
-        delete_item("", self.dynamodb)
-        raise_and_catch_exception(self.boolean)
-        print ('End: test_delete_todo_exception')
+
+
 
 if __name__ == '__main__':
     unittest.main()
