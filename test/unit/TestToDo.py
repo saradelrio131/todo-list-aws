@@ -115,7 +115,7 @@ class TestDatabaseFunctions(unittest.TestCase):
 
         # Testing file functions
         # Table mock
-        responsePut = put_item(self.text)
+        responsePut = put_item(self.text, None)
         print ('Response put_item:' + str(responsePut))
         idItem = json.loads(responsePut['body'])['id']
         print ('Id item:' + idItem)
