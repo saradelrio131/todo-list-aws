@@ -224,6 +224,14 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
         
+    def raise_and_catch_exception(self):
+        # example function that raises and catches an exception
+        try:
+            if self.boolean:
+                raise ValueError()
+        except ValueError:
+            print('Raised exception')
+    
     def test_delete_todo_exception(self):
         print ('---------------------')
         print ('Start: test_delete_todo_exception')
@@ -232,15 +240,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         delete_item("", self.dynamodb)
         raise_and_catch_exception(self.boolean)
         print ('End: test_delete_todo_exception')
-
-    def raise_and_catch_exception(self):
-        # example function that raises and catches an exception
-        try:
-            if self.boolean:
-                raise ValueError()
-        except ValueError:
-            print('Raised exception')
-
 
 if __name__ == '__main__':
     unittest.main()
