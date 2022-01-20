@@ -29,6 +29,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.is_local = 'true'
         self.uuid = "123e4567-e89b-12d3-a456-426614174000"
         self.text = "Aprender DevOps y Cloud en la UNIR"
+        self.text2 = "Aprender DevOps y Cloud"
 
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
@@ -205,7 +206,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Start: test_delete_todo_error_1')
         from src.todoList import delete_item
         # Testing file functions
-        delete_item("", self.dynamodb)
+        delete_item(self.text2, self.dynamodb)
         print ('End: test_delete_todo_error_1')
 
 
