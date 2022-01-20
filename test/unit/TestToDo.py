@@ -30,6 +30,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.is_local = 'true'
         self.uuid = "123e4567-e89b-12d3-a456-426614174000"
         self.text = "Aprender DevOps y Cloud en la UNIR"
+        self.boolean = 'true'
 
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
@@ -229,13 +230,13 @@ class TestDatabaseFunctions(unittest.TestCase):
         from src.todoList import delete_item
         # Testing file functions
         delete_item("", self.dynamodb)
-        raise_and_catch_exception(True)
+        raise_and_catch_exception(self.boolean)
         print ('End: test_delete_todo_exception')
 
-    def raise_and_catch_exception(do_raise):
+    def raise_and_catch_exception(self):
         # example function that raises and catches an exception
         try:
-            if do_raise:
+            if self.boolean:
                 raise ValueError()
         except ValueError:
             print('Raised exception')
