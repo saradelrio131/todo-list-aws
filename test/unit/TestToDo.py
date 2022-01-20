@@ -110,14 +110,11 @@ class TestDatabaseFunctions(unittest.TestCase):
     def test_get_table(self):
         print ('---------------------')
         print ('Start: test_get_table')
-        from src.todoList import get_item
+        
         from src.todoList import put_item
 
-        # Testing file functions
-        # Table mock
-        responsePut = put_item(self.text, "")
-        print ('Response put_item:' + str(responsePut))
-             
+        self.assertRaises(Exception, put_item(self.text, "")
+                   
         print ('End: test_get_table')    
     
     def test_list_todo(self):
