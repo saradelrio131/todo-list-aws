@@ -83,6 +83,17 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(Exception, put_item("", self.dynamodb))
         self.assertRaises(Exception, put_item("", self.dynamodb))
         print ('End: test_put_todo_error')
+        
+    def test_put_todo_error_1(self):
+        print ('---------------------')
+        print ('Start: test_put_todo_error_1')
+        # Testing file functions
+        from src.todoList import put_item
+        # Table mock
+        response = put_item(self.text, self.dynamodb)
+        print ('Response put_item:' + str(response))
+        self.assertEqual(300, response['statusCode'])
+        print ('End: test_put_todo_error_1')
 
     def test_get_todo(self):
         print ('---------------------')
@@ -200,15 +211,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
-
-    def test_delete_todo_error_1(self):
-        print ('---------------------')
-        print ('Start: test_delete_todo_error_1')
-        from src.todoList import delete_item
-        # Testing file functions
-        delete_item(self.text2, self.dynamodb)
-        print ('End: test_delete_todo_error_1')
-
-
+ 
 if __name__ == '__main__':
     unittest.main()
