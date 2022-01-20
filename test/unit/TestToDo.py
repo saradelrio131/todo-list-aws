@@ -200,6 +200,13 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
 
+    def test_delete_todo_error_1(self):
+        print ('---------------------')
+        print ('Start: test_delete_todo_error_1')
+        from src.todoList import delete_item
+        # Testing file functions
+        delete_item("", self.dynamodb)
+        print ('End: test_delete_todo_error_1')
 
 
 if __name__ == '__main__':
