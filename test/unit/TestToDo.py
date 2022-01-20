@@ -6,6 +6,7 @@ from moto import mock_dynamodb2
 import sys
 import os
 import json
+from unittest import mock
 
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
@@ -107,7 +108,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         
     def test_get_table(self):
         print ('---------------------')
-        print ('Start: test_get_todo')
+        print ('Start: test_get_table')
         from src.todoList import get_item
         from src.todoList import put_item
 
@@ -125,7 +126,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertEqual(
             self.text,
             responseGet['text'])
-        print ('End: test_get_todo')    
+        print ('End: test_get_table')    
     
     def test_list_todo(self):
         print ('---------------------')
@@ -221,7 +222,23 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
+        
+    def test_delete_todo_exception(self):
+        print ('---------------------')
+        print ('Start: test_delete_todo_exception')
+        from src.todoList import delete_item
+        # Testing file functions
+        delete_item("", self.dynamodb)
+        raise_and_catch_exception(True)
+        print ('End: test_delete_todo_exception')
 
+    def raise_and_catch_exception(do_raise):
+    # example function that raises and catches an exception
+    try:
+        if do_raise:
+            raise ValueError()
+    except ValueError:
+        print('Raised exception')
 
 
 if __name__ == '__main__':
