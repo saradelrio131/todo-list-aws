@@ -7,6 +7,7 @@ import sys
 import os
 import json
 from botocore.exceptions import ClientError
+import py, pytest
 
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
@@ -80,9 +81,11 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         from src.todoList import put_item
         # Table mock
-        self.assertRaises(Exception, put_item("", self.dynamodb))
-        with self.assertRaises(ClientError):
+        self.assertRaises(Exception, put_item("", self.dynamodb))         
+        try:
             put_item(1, self.dynamodb)
+        except ClientError:
+            pytest.fail("Unexpected MyError ..")
         print ('End: test_put_todo_error')
 
     def test_get_todo(self):
