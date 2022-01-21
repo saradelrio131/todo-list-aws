@@ -92,7 +92,9 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Table mock
         response = put_item(self.text, self.dynamodb)
         print ('Response put_item:' + str(response))
-        self.assertEqual(300, response['statusCode'])
+        # error message in case if test case got failed
+        message = "First value and second value are not equal !"
+        self.assertEqual(300, response['statusCode'], message)
         print ('End: test_put_todo_error_1')
 
     def test_get_todo(self):
