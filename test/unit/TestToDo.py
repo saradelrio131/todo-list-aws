@@ -42,7 +42,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         """Delete mock database and table after test is run"""
         self.table.delete()
         print ('Table deleted succesfully')
-        #self.table_local.delete()
+        self.table_local.delete() #commented
         self.dynamodb = None
         print ('End: tearDown')
 
@@ -70,8 +70,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Response put_item:' + str(response))
         self.assertEqual(200, response['statusCode'])
         # Table mock
-        #self.assertEqual(200, put_item(self.text, self.dynamodb)[
-        #                 'ResponseMetadata']['HTTPStatusCode'])
+        self.assertEqual(200, put_item(self.text, self.dynamodb)[ #commented
+                         'ResponseMetadata']['HTTPStatusCode'])
         print ('End: test_put_todo')
 
     def test_put_todo_error(self):
