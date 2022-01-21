@@ -83,7 +83,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Table mock
         self.assertRaises(Exception, put_item("", self.dynamodb))         
         try:
-            put_item(1, self.dynamodb)
+            put_item(1, self.dynamodb, 2)
         except ClientError:
             pytest.fail("Unexpected MyError ..")
         print ('End: test_put_todo_error')
