@@ -6,6 +6,7 @@ from moto import mock_dynamodb2
 import sys
 import os
 import json
+from botocore.exceptions import ClientError
 
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
