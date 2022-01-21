@@ -29,7 +29,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.is_local = 'true'
         self.uuid = "123e4567-e89b-12d3-a456-426614174000"
         self.text = "Aprender DevOps y Cloud en la UNIR"
-        self.text2 = "Aprender DevOps y Cloud"
 
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
@@ -42,7 +41,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         """Delete mock database and table after test is run"""
         self.table.delete()
         print ('Table deleted succesfully')
-        self.table_local.delete() #commented
+        #self.table_local.delete()
         self.dynamodb = None
         print ('End: tearDown')
 
@@ -70,8 +69,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Response put_item:' + str(response))
         self.assertEqual(200, response['statusCode'])
         # Table mock
-        self.assertEqual(200, put_item(self.text, self.dynamodb)[ #commented
-                         'ResponseMetadata']['HTTPStatusCode'])
+        #self.assertEqual(200, put_item(self.text, self.dynamodb)[
+        #                 'ResponseMetadata']['HTTPStatusCode'])
         print ('End: test_put_todo')
 
     def test_put_todo_error(self):
@@ -83,19 +82,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(Exception, put_item("", self.dynamodb))
         self.assertRaises(Exception, put_item("", self.dynamodb))
         print ('End: test_put_todo_error')
-        
-    def test_put_todo_error_1(self):
-        print ('---------------------')
-        print ('Start: test_put_todo_error_1')
-        # Testing file functions
-        from src.todoList import put_item
-        # Table mock
-        response = put_item(self.text, self.dynamodb)
-        print ('Response put_item:' + str(response))
-        # error message in case if test case got failed
-        message = "First value and second value are not equal !"
-        self.assertEqual(300, response['statusCode'], message)
-        print ('End: test_put_todo_error_1')
 
     def test_get_todo(self):
         print ('---------------------')
@@ -213,6 +199,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
- 
+
+
+
 if __name__ == '__main__':
     unittest.main()
